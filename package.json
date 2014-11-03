@@ -1,0 +1,30 @@
+{
+  "name": "loan",
+  "version": "0.0.0",
+  "description": "Testing mithril and webpack.  Requires nginx to be on the path to start/stop",
+  "main": "",
+  "repository": "https://github.com/blanchg/mithril-webpack.git",
+  "dependencies": {
+    "mithril": "^0.1.22",
+    "webpack-dev-server": "^1.6.5"
+  },
+  "devDependencies": {
+    "bundle-loader": "^0.5.0",
+    "css-loader": "^0.9.0",
+    "html-webpack-plugin": "^1.1.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.8.0",
+    "webpack": "^1.4.4",
+    "webpack-dev-server": "1.6.5",
+    "compose-extend" : "1.0.0",
+    "lodash.bindall": "2.4.1",
+    "eventemitter3" : "0.1.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nginx",
+    "stop": "nginx -s stop"
+  },
+  "author": "",
+  "license": "MIT"
+}
