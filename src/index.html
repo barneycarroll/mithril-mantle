@@ -5,8 +5,7 @@
     <title>{%=o.htmlWebpackPlugin.options.title || 'Webpack App'%}</title>
   </head>
   <body>
-    {% for (var chunk in o.htmlWebpackPlugin.assets) { %}
-    <script src="{%=o.htmlWebpackPlugin.assets[chunk]%}"></script>
-    {% } %}
+    <script src="{%=o.htmlWebpackPlugin.assets.vendor%}"></script>
+    <script src="{%=o.htmlWebpackPlugin.assets.main%}"></script>
   </body>
 </html>
