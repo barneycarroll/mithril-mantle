@@ -14,7 +14,12 @@ function isArr(obj) {return type(obj) == sArr}
 function isFn(obj) {return typeof obj == "function"}
 function isStr(obj){ return type(obj) == sStr}
 
-var ma = function() {};
+var ma = function(node, id, selector) {
+  if(!node.children[id]) {
+    node.children[id] = ma.factory(selector);
+  }
+  return node.children[id].render();
+};
 
 ma.factory = function(selector) {
   var inst = new ma.registry[selector];
@@ -54,6 +59,18 @@ var Controller = function(attrs) {
   this.attrs = attrs;
   if(this.init) this.init.apply(this,arguments);
   bindAll(this);
+};
+
+var Nodes = function() {
+  this.nodes = null;
+  this.children = {};
+};
+
+Controller.prototype.each = function(nodes, listId, list, cb) {
+  if(!nodes.nodes) nodes.nodes = new Nodes();
+  return list.map(function(item, idx) {
+    return cb(item, idx, nodes.nodes);
+  });
 };
 
 Model.extend = ViewModel.extend = Controller.extend = Collection.extend = extend;
@@ -101,12 +118,7 @@ Element.prototype.attach = function(elem)  {
 
 var View = function() {
   this.event = new EventEmitter();
-  this.ma = function (id, selector, attrs, children) {
-    if(!this[id]) {
-      this[id] = ma.factory(selector);
-    }
-    return this[id].render();
-  }.bind(this);
+  this.nodes = new Nodes();
   if(this.init) this.init.apply(this,arguments);
   bindAll(this);
 };
