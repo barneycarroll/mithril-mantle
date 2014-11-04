@@ -87,22 +87,15 @@ var asyncModule = function(name) {
 		ViewModel: ViewModel.extend({
 			init: function () {
 				this.list = new this.parent.Collection();
-				//this.description = m.prop("");
-			},
-			_desc: '',
-			description: function(txt) {
-				if(txt) {
-					m.redraw.strategy('none');
-					this._desc = txt;
-				} else {
-					return this._desc;
-				}
+				this.description = m.prop("");
 			},
 			add: function () {
 				m.redraw.strategy('diff');
-				if (this._desc) {
-					this.list.push(new this.parent.Model( { description: this._desc } ));
-					this._desc = "";
+				if (this.description()) {
+
+					this.list.push(new this.parent.Model( { description: this.description() } ));
+					this.description("");
+
 				}
 			}
 		}),
