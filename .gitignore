@@ -1,6 +1,5 @@
 logs/*
 temp/*
-public/*
 node_modules/
 .idea
 /npm-debug.log

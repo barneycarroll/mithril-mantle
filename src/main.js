@@ -56,7 +56,7 @@ var asyncModule = function(name) {
 			template: function(ctrl) {
 				return m('div', [
 					m('span', 'Hooba Booba!'),
-					this.ma('do', 'Do')
+					//this.ma('do', 'Do')
 				]);
 			}
 		})
@@ -87,12 +87,22 @@ var asyncModule = function(name) {
 		ViewModel: ViewModel.extend({
 			init: function () {
 				this.list = new this.parent.Collection();
-				this.description = m.prop("");
+				//this.description = m.prop("");
+			},
+			_desc: '',
+			description: function(txt) {
+				if(txt) {
+					m.redraw.strategy('none');
+					this._desc = txt;
+				} else {
+					return this._desc;
+				}
 			},
 			add: function () {
-				if (this.description()) {
-					this.list.push(new this.parent.Model( { description: this.description() } ));
-					this.description("");
+				m.redraw.strategy('diff');
+				if (this._desc) {
+					this.list.push(new this.parent.Model( { description: this._desc } ));
+					this._desc = "";
 				}
 			}
 		}),
