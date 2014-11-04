@@ -109,23 +109,23 @@ var asyncModule = function(name) {
       template: function (ctrl) {
 
         var ret = m("div", [
-					m("input", {onchange: m.withAttr("value", ctrl.vm.description), value: ctrl.vm.description()}),
-					m("button", {onclick: ctrl.vm.add}, "Add"),
+          m("input", {onchange: m.withAttr("value", ctrl.vm.description), value: ctrl.vm.description()}),
+          m("button", {onclick: ctrl.vm.add}, "Add"),
 
-					this.ma('f1', 'Do'),
-					this.ma('test', 'Test'),
-					m("table", [
-						ctrl.vm.list.map(function (task, index) {
-							return m("tr", [
-								m("td", [
-									m("input[type=checkbox]", {onclick: m.withAttr("checked", task.done), checked: task.done()})
-								]),
-								m("td", {style: {textDecoration: task.done() ? "line-through" : "none"}, events: { 'controllerCreated' : ctrl.logger }}, [
-									m("span", task.description())
-								])
-							])
-						})
-					])]
+          this.ma('f1', 'Do'),
+          this.ma('test', 'Test'),
+          m("table", [
+            ctrl.vm.list.map(function (task, index) {
+              return m("tr", [
+                m("td", [
+                  m("input[type=checkbox]", {onclick: m.withAttr("checked", task.done), checked: task.done()})
+                ]),
+                m("td", {style: {textDecoration: task.done() ? "line-through" : "none"}, events: { 'controllerCreated' : ctrl.logger }}, [
+                  m("span", task.description())
+                ])
+              ])
+            })
+          ])]
         );
 
         return ret;
